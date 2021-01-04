@@ -1,0 +1,59 @@
+<!doctype html>
+<title>Home </title>
+
+<header>
+    
+<h2>Mask detection using Transfer Learning (Mobilenet)</h2>
+
+</header>
+
+
+<div >
+    <img alt="content" width="190" height="190" src={{ url_for('display_logo', filename='camera.png') }}>
+    <h2 >Upload Image and Predict</h2>
+    <form method="post" action="/submit_file" enctype="multipart/form-data">
+        <dl>
+            <p>
+                <input type="file" name="file" autocomplete="off" required>
+            </p>
+        </dl>
+            <p>
+                <input type="submit" value="Submit" >
+            </p>
+    </form>
+</div>
+
+
+<div>
+    <img alt="content" width="200" height="200" src={{ url_for('display_logo', filename='video.png') }}>
+
+    <h2>Start Camera </h2>
+
+    <p >Please Make sure your face is within 1 metre</p>
+	<button ><a href= {{url_for('start_camera') }} >Click to start Camera</a></button>
+		  
+</div>
+
+<div>
+     <!-- Result Section-->
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+	    <div >
+		    <img alt="hero" src="{{ url_for('display_image', filename='temp.jpg') }}">
+	    </div>
+      
+        <div >
+        
+            <h1 >RESULTS
+		        <br >Label : {{messages[2]}}
+		    </h1>
+            
+            <p >Accuracy: {{ messages[0] }}</p>
+            
+            <p >Filename: {{ messages[1] }}</p>
+	    </div>
+
+  {% endif %}
+	{% endwith %}
+</div>
